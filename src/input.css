@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.grid-area-header {
+    grid-area: header;
+}
+
+.grid-area-nexum {
+    grid-area: nexum;
+}
+
+.grid-area-main {
+    grid-area: main;
+}
+
+.grid-template-body {
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 10% 90%;
+    grid-template-areas: 
+        "header nexum"
+        "main nexum"
+    ;
+}
