@@ -7,7 +7,7 @@ class Nexum {
                 {
                     nome: "Cellbit",
                     img: "./imgs/users/cellbit.png",
-                    msgs: [[1, "Oiee"], [0, "Oieee"]]
+                    msgs: [[0, "Oiee"], [1, "Oieee"]]
                 }
             ]
         }
@@ -56,7 +56,6 @@ class Nexum {
     }
 
     loadContacts() {
-        console.log("oi")
         this.data.contacts.forEach(el => {
             const contact = hm.create("div", `
             <li class="w-full h-full grid grid-template-usermsg box-border hover:bg-indigo-800 p-1 cursor-pointer transition-colors">
@@ -87,7 +86,7 @@ class Nexum {
         <img src="${userObj.img}" alt="" class="w-1/6 h-full rounded-full p-2">
             <h2 class="text-white text-lg ml-2">${userObj.nome}</h2>
         `)
-        userObj.msgs.forEach(e => {
+        userObj.msgs.reverse().forEach(e => {
             hm.inner("#chat-content", `
                 <li class="${["flex m-3", "flex justify-end m-3"][e[0] * 1]}">
                     <p class="${["bg-indigo-950 p-2 rounded-md text-white shadow-lg max-w-2/3","bg-slate-900 p-2 rounded-md text-white max-w-2/3 break-words"][e[0] * 1]}">${e[1]}</p>
