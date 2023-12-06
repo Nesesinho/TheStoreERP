@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>The Store ERP</title>
 </head>
 <body class="w-screen h-screen grid grid-template-body bg-orange-100">
     <header class="grid-area-header flex justify-center items-center">
@@ -18,12 +19,12 @@
     <section class="grid-area-nexum w-full h-full flex flex-col">
         <div class="w-full h-1/10 bg-indigo-950 px-3">
             <div class="w-full h-full flex items-center">
-                <img src="../src/images/icons/nexum-logo.png" alt="" class="h-full w-max py-4 invert">
+                <img src="./imgs/icons/nexum-logo.png" alt="" class="h-full w-max py-4 invert">
                 <h1 class="text-white text-3xl pl-2">Nexum</h1>
             </div>
 
             <span class="w-full h-full flex items-center hidden">
-                <img src="../src/images/users/cellbit.png" alt="" class="w-1/6 h-full rounded-full p-2">
+                <img src="./imgs/users/cellbit.png" alt="" class="w-1/6 h-full rounded-full p-2">
                 <h2 class="text-white text-lg ml-2">Lorem, ipsum.</h2>
             </span>
         </div>
@@ -40,7 +41,7 @@
                 <span class="w-full h-1/10 flex">
                     <span class="w-5/6 m-1 bg-indigo-700 rounded-xl shadow-xl"></span>
                     <span class="w-1/6 h-full p-3 flex items-center justify-center hover:cursor-pointer">
-                        <img src="../src/images/icons/send-arrow.png" alt="" class="w-max h-full">
+                        <img src="./imgs/icons/send-arrow.png" alt="" class="w-max h-full">
                     </span>
                 </span>
             </div>
@@ -49,7 +50,7 @@
             <ul class="h-full grid grid-rows-8 gap-2">
                 <li class="w-full h-full grid grid-template-usermsg box-border hover:bg-indigo-800 p-1 cursor-pointer transition-colors">
                     <span class="grid-area-icon flex justify-center box-border">
-                        <img class="w-max h-full rounded-full" src="../src/images/users/cellbit.png"></img>
+                        <img class="w-max h-full rounded-full" src="./imgs/users/cellbit.png"></img>
                     </span>
                     <h2 class="grid-area-name text-white">Lorem, ipsum.</h2>
                     <span class="grid-area-time">03/02/2023</span>
@@ -58,14 +59,71 @@
             </ul>
         </div>
     </section>
-    <main class="grid-area-main grid grid-cols-4 grid-rows-5 gap-3 px-2 py-2">
+    <main id="menu" class="grid-area-main grid grid-cols-4 grid-rows-5 gap-3 px-2 py-2">
         <div class="bg-indigo-950 rounded-md text-white">Valor Recebido</div>
         <div class="bg-indigo-950 rounded-md text-white"></div>
         <div class="bg-indigo-950 rounded-md text-white">Numero de Vendas</div>
         <div class="bg-indigo-950 rounded-md col-span-1 row-span-3 text-white">Estoque</div>
-        <div class="bg-indigo-950 rounded-md col-span-3 row-span-2 text-white">Lucro Periodo</div>
+        <div class="bg-indigo-950 rounded-md col-span-3 row-span-2 text-white flex flex-col h-full p-3">
+            <h2>Lucro Periodo</h2>
+            <span class="">
+                <canvas id="lucro" style="height: 130%; width: 100%;"></canvas>
+            </span>
+        </div>
         <div class="bg-indigo-950 rounded-md col-span-3 row-span-2 text-white">Faturamento Periodo</div>
-        <div class="bg-indigo-950 rounded-md col-span-1 row-span-2 text-white">Produtos Vendidos</div>  
+        <div class="bg-indigo-950 rounded-md col-span-1 row-span-2 text-white flex flex-col p-2 relative">
+            <h2 class="h-/5">Produtos Vendidos</h2>
+            <span class="flex justify-center pt-3 absolute" style="width: 90%;height: 100%;">
+                <canvas id="produtosVendidos" class="w-full h-full"></canvas>
+            </span>
+        </div>  
     </main>
+    <script>
+        const lucroCtx = document.getElementById('lucro');
+      
+        new Chart(lucroCtx, {
+          type: 'line',
+          data: {
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'julho', 'agosto', 'setembro', "outubro", 'novembro', 'dezembro'],
+            datasets: [{
+              label: '# of Votes',
+              data: [1, 13, 3, 5, 2, 3, 32, 12, 5, 6, 34, 50],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            },
+          }
+        });
+
+        const ProdutosVendidosCtx = document.getElementById("produtosVendidos");
+
+        new Chart(ProdutosVendidosCtx, {
+            type: "pie",
+            data: {
+                labels: ["produto", "produto2", "produto3", "produto4", "produto5"],
+                datasets: [{
+                    data: [1, 10, 30 ,2 ,1],
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: "left",
+                        align: "center",
+                        labels: {
+                            usePointStyle: true
+                        }
+                    }
+                }
+            }
+        })
+
+        const estoqueCtx = document.getElementById("estoque");
+      </script>
 </body>
 </html>
