@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    @variants responsive {
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+      }
+    }
+  }
+
 .grid-area-header {
     grid-area: header;
 }
@@ -21,4 +36,45 @@
         "header nexum"
         "main nexum"
     ;
+}
+
+.grid-area-icon {
+    grid-area: icon;
+}
+
+.grid-area-name {
+    grid-area: name;
+}
+
+.grid-area-lastmsg {
+    grid-area: lastmsg;
+}
+
+.grid-area-time {
+    grid-area: time;
+}
+
+.grid-template-usermsg {
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 30% 70%;
+    grid-template-areas:
+        "icon name time"
+        "icon lastmsg lastmsg"
+    ;
+}
+
+.h-1\/10 {
+    height: 10%;
+}
+
+.h-9\/10 {
+    height: 90%;
+}
+
+.grid-rows-8 {
+    grid-template-rows: repeat(8, minmax(0, 1fr));
+}
+
+.max-w-2\/3 {
+    max-width: 66.666667%;
 }

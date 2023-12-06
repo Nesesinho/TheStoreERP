@@ -6,16 +6,66 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
-<body class="w-screen h-screen grid grid-template-body bg-emerald-200">
+<body class="w-screen h-screen grid grid-template-body bg-orange-100">
     <header class="grid-area-header flex justify-center items-center">
         <ul class="flex">
-            <li class="mx-2 text-lg">Visão Geral</li>
-            <li class="mx-2 text-lg">Clientes</li>
-            <li class="mx-2 text-lg">Vendas</li>
-            <li class="mx-2 text-lg">Produtos</li>
+            <li class="mx-2 text-xl border-b-2 border-b-orange-100 hover:border-black box-border hover:cursor-pointer">Visão Geral</li>
+            <li class="mx-2 text-xl border-b-2 border-b-orange-100 hover:border-black box-border hover:cursor-pointer">Clientes</li>
+            <li class="mx-2 text-xl border-b-2 border-b-orange-100 hover:border-black box-border hover:cursor-pointer">Vendas</li>
+            <li class="mx-2 text-xl border-b-2 border-b-orange-100 hover:border-black box-border hover:cursor-pointer">Produtos</li>
         </ul>
     </header>
-    <section class="grid-area-nexum"></section>
-    <main class="grid-area-main"></main>
+    <section class="grid-area-nexum w-full h-full flex flex-col">
+        <div class="w-full h-1/10 bg-indigo-950 px-3">
+            <div class="w-full h-full flex items-center">
+                <img src="../src/images/icons/nexum-logo.png" alt="" class="h-full w-max py-4 invert">
+                <h1 class="text-white text-3xl pl-2">Nexum</h1>
+            </div>
+
+            <span class="w-full h-full flex items-center hidden">
+                <img src="../src/images/users/cellbit.png" alt="" class="w-1/6 h-full rounded-full p-2">
+                <h2 class="text-white text-lg ml-2">Lorem, ipsum.</h2>
+            </span>
+        </div>
+        <div class="w-full h-9/10 bg-indigo-900">
+            <div class="w-full h-full flex flex-col hidden">
+                <ul class="w-full h-9/10 overflow-x-auto no-scrollbar">
+                    <li class="flex m-3">
+                        <p class="bg-slate-900 p-2 rounded-md text-white max-w-2/3 break-words">Oieeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</p>
+                    </li>
+                    <li class="flex justify-end m-3">
+                        <p class="bg-indigo-950 p-2 rounded-md text-white shadow-lg max-w-2/3">Oiee</p>
+                    </li>
+                </ul>
+                <span class="w-full h-1/10 flex">
+                    <span class="w-5/6 m-1 bg-indigo-700 rounded-xl shadow-xl"></span>
+                    <span class="w-1/6 h-full p-3 flex items-center justify-center hover:cursor-pointer">
+                        <img src="../src/images/icons/send-arrow.png" alt="" class="w-max h-full">
+                    </span>
+                </span>
+            </div>
+
+
+            <ul class="h-full grid grid-rows-8 gap-2">
+                <li class="w-full h-full grid grid-template-usermsg box-border hover:bg-indigo-800 p-1 cursor-pointer transition-colors">
+                    <span class="grid-area-icon flex justify-center box-border">
+                        <img class="w-max h-full rounded-full" src="../src/images/users/cellbit.png"></img>
+                    </span>
+                    <h2 class="grid-area-name text-white">Lorem, ipsum.</h2>
+                    <span class="grid-area-time">03/02/2023</span>
+                    <span class="grid-area-lastmsg">Lorem ipsum dolor sit amet.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <main class="grid-area-main grid grid-cols-4 grid-rows-5 gap-3 px-2 py-2">
+        <div class="bg-indigo-950 rounded-md text-white">Valor Recebido</div>
+        <div class="bg-indigo-950 rounded-md text-white"></div>
+        <div class="bg-indigo-950 rounded-md text-white">Numero de Vendas</div>
+        <div class="bg-indigo-950 rounded-md col-span-1 row-span-3 text-white">Estoque</div>
+        <div class="bg-indigo-950 rounded-md col-span-3 row-span-2 text-white">Lucro Periodo</div>
+        <div class="bg-indigo-950 rounded-md col-span-3 row-span-2 text-white">Faturamento Periodo</div>
+        <div class="bg-indigo-950 rounded-md col-span-1 row-span-2 text-white">Produtos Vendidos</div>  
+    </main>
 </body>
 </html>
