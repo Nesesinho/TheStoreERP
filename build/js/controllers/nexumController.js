@@ -63,9 +63,9 @@ class Nexum {
                 <span class="grid-area-icon flex justify-center box-border">
                     <img class="w-max h-full rounded-full" src="${el.img}"></img>
                 </span>
-                <h2 class="grid-area-name text-white">${el.nome}</h2>
+                <h2 class="grid-area-name text-white text-lg">${el.nome}</h2>
                 <span class="grid-area-time">03/02/2023</span>
-                <span class="grid-area-lastmsg">${el.msgs[0][1]}</span>
+                <span class="grid-area-lastmsg">${["", "Você: "][el.msgs[0][0] * 1]}${el.msgs[0][1]}</span>
             </li>
             `)
 
