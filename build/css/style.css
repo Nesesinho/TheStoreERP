@@ -534,18 +534,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.absolute {
-  position: absolute;
-}
-
-.relative {
-  position: relative;
-}
-
-.col-span-1 {
-  grid-column: span 1 / span 1;
-}
-
 .col-span-3 {
   grid-column: span 3 / span 3;
 }
@@ -554,8 +542,8 @@ video {
   grid-row: span 2 / span 2;
 }
 
-.row-span-3 {
-  grid-row: span 3 / span 3;
+.row-span-5 {
+  grid-row: span 5 / span 5;
 }
 
 .m-1 {
@@ -571,14 +559,14 @@ video {
   margin-right: 0.5rem;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
-}
-
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .ml-2 {
@@ -589,20 +577,12 @@ video {
   box-sizing: border-box;
 }
 
-.block {
-  display: block;
-}
-
 .flex {
   display: flex;
 }
 
 .grid {
   display: grid;
-}
-
-.hidden {
-  display: none;
 }
 
 .h-full {
@@ -613,12 +593,8 @@ video {
   height: 100vh;
 }
 
-.h-1 {
-  height: 0.25rem;
-}
-
-.h-9 {
-  height: 2.25rem;
+.h-5\/6 {
+  height: 83.333333%;
 }
 
 .w-1\/6 {
@@ -640,6 +616,18 @@ video {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-1\/12 {
+  width: 8.333333%;
+}
+
+.w-11\/12 {
+  width: 91.666667%;
+}
+
+.w-7 {
+  width: 1.75rem;
 }
 
 .cursor-pointer {
@@ -670,6 +658,10 @@ video {
   justify-content: center;
 }
 
+.justify-around {
+  justify-content: space-around;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
@@ -680,6 +672,10 @@ video {
 
 .overflow-x-auto {
   overflow-x: auto;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 
 .break-words {
@@ -698,17 +694,26 @@ video {
   border-radius: 0.75rem;
 }
 
-.border {
-  border-width: 1px;
-}
-
 .border-b-2 {
   border-bottom-width: 2px;
 }
 
-.border-b-orange-100 {
+.border-b-4 {
+  border-bottom-width: 4px;
+}
+
+.border-l-2 {
+  border-left-width: 2px;
+}
+
+.border-indigo-950 {
   --tw-border-opacity: 1;
-  border-bottom-color: rgb(255 237 213 / var(--tw-border-opacity));
+  border-color: rgb(30 27 75 / var(--tw-border-opacity));
+}
+
+.border-b-slate-200 {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(226 232 240 / var(--tw-border-opacity));
 }
 
 .bg-indigo-700 {
@@ -726,14 +731,24 @@ video {
   background-color: rgb(30 27 75 / var(--tw-bg-opacity));
 }
 
-.bg-orange-100 {
+.bg-slate-200 {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 237 213 / var(--tw-bg-opacity));
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.bg-slate-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
 }
 
 .bg-slate-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+}
+
+.bg-red-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
 }
 
 .p-1 {
@@ -772,12 +787,12 @@ video {
   padding-left: 0.5rem;
 }
 
-.pt-3 {
-  padding-top: 0.75rem;
+.pl-3 {
+  padding-left: 0.75rem;
 }
 
-.text-center {
-  text-align: center;
+.text-right {
+  text-align: right;
 }
 
 .text-3xl {
@@ -803,6 +818,16 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-red-950 {
+  --tw-text-opacity: 1;
+  color: rgb(69 10 10 / var(--tw-text-opacity));
 }
 
 .shadow-lg {
@@ -881,11 +906,60 @@ video {
 }
 
 .grid-template-usermsg {
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: 20% 50% 30%;
   grid-template-rows: 30% 70%;
   grid-template-areas:
         "icon name time"
         "icon lastmsg lastmsg"
+    ;
+}
+
+.grid-area-id {
+  grid-area: id;
+}
+
+.grid-area-name {
+  grid-area: name;
+}
+
+.grid-area-value {
+  grid-area: value;
+}
+
+.grid-area-stock {
+  grid-area: stock;
+}
+
+.grid-area-menuBtn {
+  grid-area: menu-btn;
+}
+
+.grid-template-productItem {
+  grid-template-columns: 10% 30% 20% 35% 5%;
+  grid-template-rows: 100%;
+  grid-template-areas:
+        "id name value stock menu-btn"
+    ;
+}
+
+.grid-area-desc {
+  grid-area: desc;
+}
+
+.grid-area-buyValue {
+  grid-area: buyValue;
+}
+
+.grid-area-minStock {
+  grid-area: minStock;
+}
+
+.grid-template-productItem-menu {
+  grid-template-columns: 10% 30% 20% 35%;
+  grid-template-rows: 20% 80%;
+  grid-template-areas:
+        "id name value stock"
+        "minStock buyValue buyValue desc"
     ;
 }
 
@@ -897,8 +971,20 @@ video {
   height: 90%;
 }
 
+.h-1\/15 {
+  height: 6.6%;
+}
+
+.h-3\/15 {
+  height: 20%;
+}
+
 .grid-rows-8 {
   grid-template-rows: repeat(8, minmax(0, 1fr));
+}
+
+.grid-rows-15 {
+  grid-template-rows: repeat(15, minmax(0, 1fr));
 }
 
 .max-w-2\/3 {

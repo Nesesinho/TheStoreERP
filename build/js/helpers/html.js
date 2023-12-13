@@ -19,10 +19,15 @@ class Html {
         document.querySelector(selector).appendChild(content);
     }
     
-    create(tag, content) {
+    create(tag, content, classes) {
         const el = document.createElement(tag);
         el.innerHTML = content;
+        if (classes) el.className = classes;
         return el;
+    }
+
+    addBefore(element, elementBefore) {
+        element.parentNode.insertBefore(elementBefore, element.nextSibling);
     }
 }
 

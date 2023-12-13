@@ -23,7 +23,7 @@ class Nexum {
                     </div>
                 </div>
                 
-                <div class="w-full h-9/10 bg-indigo-900">
+                <div class="w-full h-9/10 bg-slate-50">
                     <ul class="h-full grid grid-rows-8 gap-2" id="contacts">
                     </ul>
                 </div>
@@ -62,8 +62,8 @@ class Nexum {
                 <span class="grid-area-icon flex justify-center box-border">
                     <img class="w-max h-full rounded-full" src="${el.img}"></img>
                 </span>
-                <h2 class="grid-area-name text-white text-lg">${el.nome}</h2>
-                <span class="grid-area-time">03/02/2023</span>
+                <h2 class="grid-area-name text-lg">${el.nome}</h2>
+                <span class="grid-area-time text-right">03/02/2023</span>
                 <span class="grid-area-lastmsg">${["", "Você: "][el.msgs[0][0] * 1]}${el.msgs[0][1]}</span>
             </li>
             `)

@@ -55,11 +55,60 @@
 }
 
 .grid-template-usermsg {
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 20% 50% 30%;
     grid-template-rows: 30% 70%;
     grid-template-areas:
         "icon name time"
         "icon lastmsg lastmsg"
+    ;
+}
+
+.grid-area-id {
+    grid-area: id;
+}
+
+.grid-area-name {
+    grid-area: name;
+}
+
+.grid-area-value {
+    grid-area: value;
+}
+
+.grid-area-stock {
+    grid-area: stock;
+}
+
+.grid-area-menuBtn {
+    grid-area: menu-btn;
+}
+
+.grid-template-productItem {
+    grid-template-columns: 10% 30% 20% 35% 5%;
+    grid-template-rows: 100%;
+    grid-template-areas:
+        "id name value stock menu-btn"
+    ;
+}
+
+.grid-area-desc {
+    grid-area: desc;
+}
+
+.grid-area-buyValue {
+    grid-area: buyValue;
+}
+
+.grid-area-minStock {
+    grid-area: minStock;
+}
+
+.grid-template-productItem-menu {
+    grid-template-columns: 10% 30% 20% 35%;
+    grid-template-rows: 20% 80%;
+    grid-template-areas:
+        "id name value stock"
+        "minStock buyValue buyValue desc"
     ;
 }
 
@@ -71,8 +120,20 @@
     height: 90%;
 }
 
+.h-1\/15 {
+    height: 6.6%;
+}
+
+.h-3\/15 {
+    height: 20%;
+}
+
 .grid-rows-8 {
     grid-template-rows: repeat(8, minmax(0, 1fr));
+}
+
+.grid-rows-15 {
+    grid-template-rows: repeat(15, minmax(0, 1fr));
 }
 
 .max-w-2\/3 {
