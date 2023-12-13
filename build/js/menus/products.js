@@ -12,6 +12,96 @@ export class Products {
                 buyValue: 500,
                 minStock: 5,
                 desc: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, harum reprehenderit? Aperiam sunt ratione iure harum non minima officia voluptate?`
+            },
+            {
+                id: 1,
+                name: "PlayStation 5",
+                value: 700,
+                stock: 8,
+                infoWindow: false,
+                buyValue: 480,
+                minStock: 4,
+                desc: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, harum reprehenderit? Aperiam sunt ratione iure harum non minima officia voluptate?`
+            },
+            {
+                id: 2,
+                name: "Nintendo Switch",
+                value: 300,
+                stock: 15,
+                infoWindow: false,
+                buyValue: 200,
+                minStock: 7,
+                desc: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, harum reprehenderit? Aperiam sunt ratione iure harum non minima officia voluptate?`
+            },
+            {
+                id: 3,
+                name: "PC Gaming",
+                value: 1200,
+                stock: 5,
+                infoWindow: false,
+                buyValue: 900,
+                minStock: 2,
+                desc: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, harum reprehenderit? Aperiam sunt ratione iure harum non minima officia voluptate?`
+            },
+            {
+                id: 4,
+                name: "Smartphone",
+                value: 800,
+                stock: 12,
+                infoWindow: false,
+                buyValue: 600,
+                minStock: 6,
+                desc: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, harum reprehenderit? Aperiam sunt ratione iure harum non minima officia voluptate?`
+            },
+            {
+                id: 5,
+                name: "Headphones",
+                value: 100,
+                stock: 20,
+                infoWindow: false,
+                buyValue: 70,
+                minStock: 10,
+                desc: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, harum reprehenderit? Aperiam sunt ratione iure harum non minima officia voluptate?`
+            },
+            {
+                id: 6,
+                name: "4K TV",
+                value: 500,
+                stock: 7,
+                infoWindow: false,
+                buyValue: 380,
+                minStock: 3,
+                desc: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, harum reprehenderit? Aperiam sunt ratione iure harum non minima officia voluptate?`
+            },
+            {
+                id: 7,
+                name: "Camera DSLR",
+                value: 700,
+                stock: 9,
+                infoWindow: false,
+                buyValue: 550,
+                minStock: 4,
+                desc: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, harum reprehenderit? Aperiam sunt ratione iure harum non minima officia voluptate?`
+            },
+            {
+                id: 8,
+                name: "Tablet",
+                value: 250,
+                stock: 14,
+                infoWindow: false,
+                buyValue: 180,
+                minStock: 8,
+                desc: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, harum reprehenderit? Aperiam sunt ratione iure harum non minima officia voluptate?`
+            },
+            {
+                id: 9,
+                name: "Fitness Tracker",
+                value: 80,
+                stock: 18,
+                infoWindow: false,
+                buyValue: 60,
+                minStock: 9,
+                desc: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, harum reprehenderit? Aperiam sunt ratione iure harum non minima officia voluptate?`
             }
         ]
     }
@@ -26,7 +116,7 @@ export class Products {
             </div>
             <div class="bg-indigo-950 rounded-md text-white p-2 h-full">
                 <h2 class="h-1/10">Produtos registrados:</h2>
-                <span class="h-9/10 flex items-center justify-center text-2xl">1</span>
+                <spanr id="numOfProducts" class="h-9/10 flex items-center justify-center text-2xl">1</span>
             </div>
             <div class="bg-slate-50 rounded-md shadow-lg row-span-2 p-2">
                 <h2>Estoque: </h2>
@@ -43,6 +133,29 @@ export class Products {
     loadInput() {
         const input = hm.create("input", ``, "w-11/12 py-2 pl-2 border-b-4 border-indigo-950 text-black text-lg my-2w-11/12 py-2 pl-2 border-b-4 border-indigo-950 text-black text-lg my-2");
         input.placeholder = "Digite o nome do pruduto ou adicione # junto com o numero para procurar por id";
+
+        input.addEventListener("input", e => {
+            hm.inner("#productsTable", ``, "clear");
+
+            if (e.target.value === "") {
+                this.loadProducts()
+                return
+            };
+            if (e.target.value.startsWith("#")) {
+                this.data.filter(product => {
+                    return "#" + product.id === e.target.value
+                }).forEach(product => {
+                    this.addProductTable(product);
+                })
+                return
+            }
+
+            this.data.filter(product => {
+                return product.name.toLocaleLowerCase().startsWith(e.target.value.toLocaleLowerCase())
+            }).forEach(product => {
+                this.addProductTable(product);
+            })
+        })
 
         const addBtn = hm.create("img", ``, "w-1/12 p-3 hover:cursor-pointer");
         addBtn.src = "./imgs/icons/add.png";
@@ -98,6 +211,8 @@ export class Products {
 
             this.addProductTable(productData);
             this.data.push(productData);
+            hm.inner("#numOfProducts", `${this.data.length}`, "clear");
+            hm.get("#addWindow").remove();
         })
 
         hm.append("#header-addWindow", closeBtn);
@@ -182,6 +297,7 @@ export class Products {
     }
 
     init() {
+        hm.inner("#numOfProducts", `${this.data.length}`, "clear");
         this.loadInput();
         this.loadProducts();
     }
