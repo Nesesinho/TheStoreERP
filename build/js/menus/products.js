@@ -4,7 +4,7 @@ export class Products {
     constructor() {
         this.data = [
             {
-                id: 1,
+                id: 0,
                 name: "Xbox Series X",
                 value: 750,
                 stock: 10,
@@ -19,11 +19,9 @@ export class Products {
         return `
             <div class="bg-slate-50 rounded-md shadow-lg col-span-3 row-span-5 flex flex-col p-3 justify-around">
                 <h2 class="text-xl">Produtos</h2>
-                <div class="w-full flex">
-                    <input placeholder="Digite o nome do pruduto ou adicione # junto com o numero para procurar por id" type="text" class="w-11/12 py-2 pl-2 border-b-4 border-indigo-950 text-black text-lg my-2">
-                    <img src="./imgs/icons/add.png" alt="" class="w-1/12 p-3 hover:cursor-pointer">
+                <div class="w-full flex" id="inputs">
                 </div>
-                <div id="productsTable" class="flex flex-col w-full h-5/6 overflow-y-scroll ">
+                <div id="productsTable" class="flex flex-col w-full h-5/6 overflow-y-scroll relative">                    
                 </div>
             </div>
             <div class="bg-indigo-950 rounded-md text-white p-2 h-full">
@@ -42,9 +40,94 @@ export class Products {
         `
     }
 
+    loadInput() {
+        const input = hm.create("input", ``, "w-11/12 py-2 pl-2 border-b-4 border-indigo-950 text-black text-lg my-2w-11/12 py-2 pl-2 border-b-4 border-indigo-950 text-black text-lg my-2");
+        input.placeholder = "Digite o nome do pruduto ou adicione # junto com o numero para procurar por id";
+
+        const addBtn = hm.create("img", ``, "w-1/12 p-3 hover:cursor-pointer");
+        addBtn.src = "./imgs/icons/add.png";
+
+        addBtn.addEventListener("click", e => {
+            if (hm.get("#addWindow")) return;
+            this.loadAddWindow();
+        })
+
+        hm.append("#inputs", input);
+        hm.append("#inputs", addBtn);
+    }
+
+    loadAddWindow() {
+        hm.inner("#productsTable", `
+            <div id="addWindow" class="absolute w-full h-full flex justify-center items-center">
+                <div id="addWindow-form" class="w-4/5 h-4/5 shadow-lg bg-slate-50 grid grid-cols-2 grid-rows-6">
+                    <span id="header-addWindow" class="bg-indigo-950 text-white col-span-2 flex justify-between items-center p-2">
+                        <h2>Novo Produto</h2>
+                    </span>
+                    <input id="productName" type="text" placeholder="Nome" class="transition-colors pl-2 border-b-4 border-black mx-2 my-4 col-span-2"></input>
+                    <input id="productValue" type="number" placeholder="Valor de Revenda" class="transition-colors pl-2 border-b-4 border-black mx-2 my-4 "></input>
+                    <input id="productStock" type="number" placeholder="Estoque inicial" class="transition-colors pl-2 border-b-4 border-black mx-2 my-4 "></input>
+                    <input id="productMinStock" type="number" placeholder="Estoque minimo" class="transition-colors pl-2 border-b-4 border-black mx-2 my-4 "></input>
+                    <input id="productBuyValue" type="number" placeholder="Valor de Compra" class="transition-colors pl-2 border-b-4 border-black mx-2 my-4 "></input>
+                    <textarea id="productDesc" name="" id="" cols="30" rows="10" placeholder="Descrição" class="transition-colors pl-2 mx-2 col-span-2"></textarea>
+                </div> 
+            </div>
+        `)
+
+        const closeBtn = hm.create("img", ``, "w-8 hover:cursor-pointer");
+        closeBtn.src = "./imgs/icons/close.png";
+
+        closeBtn.addEventListener("click", e => {
+            hm.get("#addWindow").remove();
+        })
+
+        const addBtn = hm.create("button", ``, "mx-2 p-2 my-auto bg-green-600 text-white w-min hover:cursor-pointer");
+        addBtn.innerHTML = "Adicionar";
+        addBtn.addEventListener("click", e => {
+            if (!this.addFormChecker()) return
+
+            const productData = {
+                id: 1,
+                name: hm.get("#productName").value,
+                value: hm.get("#productValue").value,
+                stock: hm.get("#productStock").value,
+                infoWindow: false,
+                buyValue: hm.get("#productBuyValue").value,
+                minStock: hm.get("#productMinStock").value,
+                desc: hm.get("#productDesc").value
+            };
+
+            this.addProductTable(productData);
+            this.data.push(productData);
+        })
+
+        hm.append("#header-addWindow", closeBtn);
+        hm.append("#addWindow-form", addBtn);
+    }
+
+    addFormChecker() {
+        let valid = true;
+        const inputs = hm.get("#addWindow-form").querySelectorAll("input");
+        inputs.forEach(e => {
+            if (e.value === "") {
+                e.classList.toggle("border-red-500");
+                setTimeout(() => {
+                    e.classList.toggle("border-red-500");
+                }, 500)
+                valid = false;
+            };
+        })
+
+        return valid;
+    }
+
     loadProducts() {
         this.data.forEach(e => {
-            const div = hm.create("div", `
+            this.addProductTable(e);
+        })
+    }
+
+    addProductTable(e) {
+        const div = hm.create("div", `
                 <span class="pl-3 my-auto border-l-2 grid-area-id">${e.id}</span>
                 <span class="pl-3 my-auto border-l-2 grid-area-name">${e.name}</span>
                 <span class="pl-3 my-auto border-l-2 grid-area-value">${e.value} $</span>
@@ -62,7 +145,6 @@ export class Products {
 
             div.appendChild(img);
             hm.append("#productsTable", div);
-        })
     }
 
     moreInfo(data) {
@@ -100,6 +182,7 @@ export class Products {
     }
 
     init() {
+        this.loadInput();
         this.loadProducts();
     }
 }
