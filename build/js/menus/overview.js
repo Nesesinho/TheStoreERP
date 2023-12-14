@@ -6,7 +6,7 @@ export class Overview {
     }
 
     html() {
-        return `
+        return /*html */`
             <div class="bg-indigo-950 rounded-md text-white p-2 h-full">
                 <h2 class="h-1/10">Valor Recebido:</h2>
                 <span class="h-9/10 flex items-center justify-center text-2xl">1.542.345 $</span>
@@ -100,8 +100,6 @@ export class Overview {
             },
             options: {
                 indexAxis: 'y',
-                // Elements options apply to all of the options unless overridden in a dataset
-                // In this case, we are setting the border of each horizontal bar to be 2px wide
                 elements: {
                 bar: {
                     borderWidth: 2,
